@@ -6,17 +6,17 @@ package controller;
  */
 public interface controller {
 
-    public Double dolarPeso(double peso);
-    public Double EuroPeso(double peso);
-    public Double LibraPeso(double peso);
-    public Double YenPeso(double peso);
-    public Double WoncoreanoPeso(double peso);
+    public Double dolarPeso(double pDolarPesos,double cPeso);
+    public Double EuroPeso(double pEuroPesos,double cPeso);
+    public Double LibraPeso(double pLibraPesos,double cPeso);
+    public Double YenPeso(double pYenPesos,double cPeso);
+    public Double WoncoreanoPeso(double pWonPesos,double cPeso);
 
-    public Double pesoDolar(double dolar);
-    public Double pesoEuro(double dolar);
-    public Double pesoLibra(double dolar);
-    public Double pesoYen(double dolar);
-    public Double pesoWonCoreano(double dolar);
+    public Double pesoDolar(double dolar, double pDolarPeso);
+    public Double pesoEuro(double dolar, double pEuroPesos);
+    public Double pesoLibra(double dolar, double pLibraPesos);
+    public Double pesoYen(double dolar, double pYenPesos);
+    public Double pesoWonCoreano(double dolar, double pWonPesos);
 
 
 }

@@ -11,6 +11,7 @@ public class Model {
     private Double libra;
     private Double yen;
     private Double won;
+    public  Model(){}
     public Model(Double dolar, Double peso, Double euro, Double libra, Double yen, Double won) {
         this.dolar = dolar;
         this.peso = peso;

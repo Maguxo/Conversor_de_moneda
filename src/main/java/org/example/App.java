@@ -1,6 +1,6 @@
 package org.example;
 /**
- * Desarrolado por Edgar M Gómez P
+ * Desarrolado by Edgar M Gómez P
  * Back-end Developer Java
  *
  */
