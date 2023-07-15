@@ -1,19 +1,28 @@
 package front_end;
 /**
- * Desarrolado by Edgar M Gómez P
+ * Create by Edgar M Gómez P
  * Back-end Developer Java
  *
  */
+
+import com.sun.jdi.Value;
+import controller.Conversiones;
+import model.Model;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
 public class Front extends JFrame {
     private JPanel panel;
+    JcomBoxRender mrender;
     private JLabel precio_principal,pais,m_moneda, mapaIma;
     private JTextField cambio_1, cambio_2;
-    private JComboBox bandera_1;
-    private JComboBox bandera_2;
+    private JComboBox bandera_1,bandera_2;
+    private JButton convertir,salir,retroceder;
     Hashtable<Object,ImageIcon> Elementor_1,Elementor_2;
     final protected int ancho= 50, alto= 50;
     public Front(){
@@ -35,14 +44,13 @@ public class Front extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Diseno();
-        imaCombo();
-        imaCombo2();
+        accionar();
+
     }
     //Icono principal del Frame
     public Image getIconImage(){
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
     }
-
     public void Diseno(){
         //etiqueta de la moneda a combertir
         m_moneda = new JLabel("1 Dólar estadounidense Es igual a:");
@@ -76,21 +84,22 @@ public class Front extends JFrame {
         cambio_1.setBackground(new Color(10,10,10));
         panel.add(cambio_1);
         //selección moneda con bandera
-        bandera_1= new JComboBox<>();
+        bandera_1= new JComboBox<String>();
         bandera_1.setBounds(110,160,200,50);
         bandera_1.setFont(new Font("Agency FB",Font.BOLD,16));
         bandera_1.setForeground(new Color(253,253,150));
         bandera_1.setBackground(new Color(10,10,10));
         panel.add(bandera_1);
+
         //precio equivalente
-        cambio_2 = new JTextField(" 4,000.06");
+        cambio_2 = new JTextField(" 4000.06");
         cambio_2.setBounds(10, 220,100,50);
         cambio_2.setFont(new Font("Agency FB",Font.BOLD,16));
         cambio_2.setForeground(new Color(253,253,150));
         cambio_2.setBackground(new Color(10,10,10));
         panel.add(cambio_2);
         //selección de cambio
-        bandera_2= new JComboBox<>();
+        bandera_2= new JComboBox<String>();
         bandera_2.setBounds(110,220,200,50);
         bandera_2.setFont(new Font("Agency FB",Font.BOLD,16));
         bandera_2.setForeground(new Color(253,253,150));
@@ -103,9 +112,23 @@ public class Front extends JFrame {
         mapaIma.setBackground(Color.pink);
         mapaIma.setIcon(getIcono("/imagenes/grafico.jpg"));
         panel.add(mapaIma);
+        //Boton convertir moneda
+        convertir = new JButton();
+        convertir.setBounds(10, 270, 50,70);
+        convertir.setOpaque(true);
+        convertir.setBorder(null);
+        convertir.setContentAreaFilled(false);
+        convertir.setBackground(new Color(10,10,10));
+        convertir.setIcon(getIconoBotones("/imagenes/boton.png"));
+        convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
+        panel.add(convertir);
+
+        imaCombo(bandera_1);
+        imaCombo2();
+
     }
      //insertar imagen y texto al combobox
-    private void imaCombo() {
+    private void imaCombo(JComboBox bandera_1) {
        bandera_1.addItem("Dólar estadounidense");
         bandera_1.addItem("Peso colombiano");
         bandera_1.addItem("Euro");
@@ -120,7 +143,7 @@ public class Front extends JFrame {
         Elementor_1.put("Yen", getIcon("/imagenes/won.png"));
         Elementor_1.put("Won coreano", getIcon("/imagenes/yen.png"));
 
-        JcomBoxRender mrender= new JcomBoxRender(Elementor_1);
+        mrender= new JcomBoxRender(Elementor_1);
         bandera_1.setRenderer(mrender);
       }
       //insertar imagen y texto al combobox
@@ -152,52 +175,32 @@ public class Front extends JFrame {
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(366,242,Image.SCALE_SMOOTH));
     }
-    public JLabel getPrecio_principal() {
-        return precio_principal;
+    public  ImageIcon getIconoBotones(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(150,150,Image.SCALE_SMOOTH));
     }
-    public void setPrecio_principal(JLabel precio_principal) {
-        this.precio_principal = precio_principal;
+    public  ImageIcon getIconoBotonesP(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(160,160,Image.SCALE_SMOOTH));
     }
-    public JLabel getPais() {
-        return pais;
+    private void accionar() {
+
+        ActionListener acciona= e -> {
+            System.out.println("si funciona "+ bandera_1.getSelectedItem() +" y " +bandera_2.getSelectedItem());
+            if (e.getSource()==convertir) {
+                dolarApeso();
+            }
+        };
+
+        convertir.addActionListener(acciona);
     }
-    public void setPais(JLabel pais) {
-        this.pais = pais;
-    }
-    public JLabel getM_moneda() {
-        return m_moneda;
-    }
-    public void setM_moneda(JLabel m_moneda) {
-        this.m_moneda = m_moneda;
-    }
-    public JLabel getMapaIma() {
-        return mapaIma;
-    }
-    public void setMapaIma(JLabel mapaIma) {
-        this.mapaIma = mapaIma;
-    }
-    public JTextField getCambio_1() {
-        return cambio_1;
-    }
-    public void setCambio_1(JTextField cambio_1) {
-        this.cambio_1 = cambio_1;
-    }
-    public JTextField getCambio_2() {
-        return cambio_2;
-    }
-    public void setCambio_2(JTextField cambio_2) {
-        this.cambio_2 = cambio_2;
-    }
-    public JComboBox getBandera_1() {
-        return bandera_1;
-    }
-    public void setBandera_1(JComboBox bandera_1) {
-        this.bandera_1 = bandera_1;
-    }
-    public JComboBox getBandera_2() {
-        return bandera_2;
-    }
-    public void setBandera_2(JComboBox bandera_2) {
-        this.bandera_2 = bandera_2;
+
+    public void dolarApeso(){
+        if(bandera_1.getSelectedItem().equals("Dólar estadounidense")){
+            Model modelo = new Model();
+            Conversiones con= new Conversiones();
+
+            cambio_2.setText(String.valueOf(con.dolarPeso(1000.60,Double.valueOf(cambio_1.getText()))));
+        }
     }
 }

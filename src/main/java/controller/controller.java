@@ -6,7 +6,7 @@ package controller;
  */
 public interface controller {
 
-    public Double dolarPeso(double pDolarPesos,double cPeso);
+    public double dolarPeso(double pDolarPesos, double cPeso);
     public Double EuroPeso(double pEuroPesos,double cPeso);
     public Double LibraPeso(double pLibraPesos,double cPeso);
     public Double YenPeso(double pYenPesos,double cPeso);

@@ -1,6 +1,6 @@
 package controller;
 /**
- * Desarrolado by Edgar M Gómez P
+ * Create by Edgar M Gómez P
  * Back-end Developer Java
  *
  */

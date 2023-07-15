@@ -1,6 +1,6 @@
 package controller;
 /**
- * Desarrolado by Edgar M Gómez P
+ * Create by Edgar M Gómez P
  * Back-end Developer Java
  *
  */
@@ -9,7 +9,7 @@ public class Conversiones implements controller{
 
    //metodos de conversiones de monedas
     @Override
-    public Double dolarPeso(double pDolarPesos, double cDolar) {
+    public double dolarPeso(double pDolarPesos, double cDolar) {
         return pDolarPesos * cDolar;
     }
     @Override
