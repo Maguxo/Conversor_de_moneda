@@ -1,6 +1,6 @@
 <html>
   <div align="center">
- <h6>Se sigue trabajando en el proyecto🛠🛠🛠🛠🛠🛠</h6>   
+ <h6>Se sigue trabajando en el proyecto🛠🛠🛠🛠🛠🛠🛠🛠🛠🛠🛠🛠</h6>   
  <h1>Challenge Conversor de Moneda</h1>
   
 </div>
