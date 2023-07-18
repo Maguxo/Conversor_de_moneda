@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class control {
-
+    final static double peso= 1;
     final static double pDolarPesos= 3500;
     final static double pEuroPesos= 4000;
     final static double pLibraPesos= 5000;
@@ -22,22 +22,24 @@ public class control {
        conversiones = new Conversiones();
     }
 
-    public ArrayList<Model> valorMoneda(){
+    public boolean valorMoneda(Model model){
 
-        ArrayList<Model> listaModelo= new ArrayList<Model>();
+        //ArrayList<Model> listaModelo= new ArrayList<Model>();
 
         try{
-            Model modelo= new Model();
-             modelo.setDolar(pDolarPesos);
-             modelo.setEuro(pEuroPesos);
-             modelo.setLibra(pLibraPesos);
-             modelo.setYen(pYenPesos);
-             modelo.setWon(pWonPesos);
-             listaModelo.add(modelo);
+            model.setDolar(this.pDolarPesos);
+            model.setPeso(this.peso);
+             model.setEuro(this.pEuroPesos);
+             model.setLibra(this.pLibraPesos);
+             model.setYen(this.pYenPesos);
+             model.setWon(this.pWonPesos);
+          //   listaModelo.add(model);
+             return true;
         }catch(Exception e){
             e.printStackTrace();
         }
-        return listaModelo;
+        return false;
     }
+
 
 }

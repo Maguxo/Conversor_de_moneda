@@ -7,6 +7,7 @@ package front_end;
 
 import com.sun.jdi.Value;
 import controller.Conversiones;
+import controller.control;
 import model.Model;
 
 import javax.swing.*;
@@ -18,12 +19,12 @@ import java.util.Hashtable;
 import java.util.Objects;
 public class Front extends JFrame {
     private JPanel panel;
-    JcomBoxRender mrender;
+    private JcomBoxRender mrender;
     private JLabel precio_principal,pais,m_moneda, mapaIma;
     private JTextField cambio_1, cambio_2;
     private JComboBox bandera_1,bandera_2;
     private JButton convertir,salir,retroceder;
-    Hashtable<Object,ImageIcon> Elementor_1,Elementor_2;
+    private Hashtable<Object,ImageIcon> Elementor_1,Elementor_2;
     final protected int ancho= 50, alto= 50;
     public Front(){
         Elementor_1= new Hashtable<>();
@@ -196,11 +197,48 @@ public class Front extends JFrame {
     }
 
     public void dolarApeso(){
-        if(bandera_1.getSelectedItem().equals("Dólar estadounidense")){
-            Model modelo = new Model();
-            Conversiones con= new Conversiones();
 
-            cambio_2.setText(String.valueOf(con.dolarPeso(1000.60,Double.valueOf(cambio_1.getText()))));
+        control control = new control();
+        Model modelo = new Model();
+        control.valorMoneda(modelo);
+        Conversiones con= new Conversiones();
+        switch (String.valueOf(bandera_1.getSelectedItem())) {
+            case "Dólar estadounidense" -> {
+                cambio_2.setText(String.valueOf(con.dolarPeso(Double.valueOf(modelo.getDolar()),Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Dólar estadounidense Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getDolar()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem())=="Peso colombiano") ? "Colombiano" : "N/A");
+            }
+            case "Peso colombiano" -> {
+                cambio_2.setText(String.valueOf(con.pesoDolar(Double.valueOf(modelo.getPeso()), Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Peso Colombiano Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getPeso()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
+            }
+            case "Euro" ->{
+                cambio_2.setText(String.valueOf(con.EuroPeso(Double.valueOf(modelo.getEuro()),Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Euro Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getEuro()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
+            }
+            case "Libra esterlina" -> {
+                cambio_2.setText(String.valueOf(con.LibraPeso(Double.valueOf(modelo.getLibra()),Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Libra esterlina Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getLibra()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
+            }
+            case "Yen" ->{
+                cambio_2.setText(String.valueOf(con.YenPeso(Double.valueOf(modelo.getYen()),Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Yen Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getYen()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
+            }
+            case "Won coreano" ->{
+                cambio_2.setText(String.valueOf(con.WoncoreanoPeso(Double.valueOf(modelo.getWon()),Double.valueOf(cambio_1.getText()))));
+                m_moneda.setText("1 Won coreano Es igual a:");
+                precio_principal.setText(String.valueOf(modelo.getWon()) + " Pesos");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
+            }
         }
     }
 }
