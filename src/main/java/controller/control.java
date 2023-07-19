@@ -11,7 +11,7 @@ import java.util.List;
 
 public class control {
     final static double peso= 1;
-    final static double pDolarPesos= 3500;
+    final static double pDolarPesos= 3500.66;
     final static double pEuroPesos= 4000;
     final static double pLibraPesos= 5000;
     final static double pYenPesos= 28.56;
@@ -24,8 +24,6 @@ public class control {
 
     public boolean valorMoneda(Model model){
 
-        //ArrayList<Model> listaModelo= new ArrayList<Model>();
-
         try{
             model.setDolar(this.pDolarPesos);
             model.setPeso(this.peso);
@@ -33,7 +31,7 @@ public class control {
              model.setLibra(this.pLibraPesos);
              model.setYen(this.pYenPesos);
              model.setWon(this.pWonPesos);
-          //   listaModelo.add(model);
+
              return true;
         }catch(Exception e){
             e.printStackTrace();

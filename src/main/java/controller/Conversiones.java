@@ -30,7 +30,7 @@ public class Conversiones implements controller{
     }
     @Override
     public Double pesoDolar(double cPesos, double pDolarPesos) {
-        return cPesos/ pDolarPesos;
+        return cPesos/pDolarPesos;
     }
     @Override
     public Double pesoEuro(double cPesos, double pEuroPesos) {
