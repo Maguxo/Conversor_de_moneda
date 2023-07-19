@@ -19,7 +19,7 @@ public class Front extends JFrame {
     private JLabel precio_principal,pais,m_moneda, mapaIma;
     private JTextField cambio_1, cambio_2;
     private JComboBox bandera_1,bandera_2;
-    private JButton convertir,salir,retroceder;
+    private JButton convertir,convertirP,salir,retroceder;
     private Hashtable<Object,ImageIcon> Elementor_1,Elementor_2;
     final protected int ancho= 50, alto= 50;
     public Front(){
@@ -121,6 +121,16 @@ public class Front extends JFrame {
         convertir.setIcon(getIconoBotones("/imagenes/boton.png"));
         convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
         panel.add(convertir);
+        //Boton convertir moneda a peso
+        convertirP = new JButton();
+        convertirP.setBounds(70, 270, 50,70);
+        convertirP.setOpaque(true);
+        convertirP.setBorder(null);
+        convertirP.setContentAreaFilled(false);
+        convertirP.setBackground(new Color(10,10,10));
+        convertirP.setIcon(getIconoBotones2("/imagenes/boton2.png"));
+        convertirP.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
+        panel.add(convertirP);
 
         imaCombo(bandera_1);
         imaCombo2();
@@ -181,19 +191,31 @@ public class Front extends JFrame {
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(160,160,Image.SCALE_SMOOTH));
     }
+    public  ImageIcon getIconoBotones2(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(100,100,Image.SCALE_SMOOTH));
+    }
+    public  ImageIcon getIconoBotonesP2(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(106,106,Image.SCALE_SMOOTH));
+    }
     private void accionar() {
 
         ActionListener acciona= e -> {
-            System.out.println("si funciona "+ bandera_1.getSelectedItem() +" y " +bandera_2.getSelectedItem());
+            System.out.println("Boton 1");
             if (e.getSource()==convertir) {
-
-                    tasaCambio_1();
-
-                    //tasaCmbio_2();
-
+                tasaCambio_1();
             }
         };
         convertir.addActionListener(acciona);
+
+        ActionListener accoina2= e -> {
+            System.out.println("Boton 2");
+            if(e.getSource() == convertirP){
+                tasaCmbio_2();
+            }
+        };
+        convertirP.addActionListener(accoina2);
     }
     public void tasaCambio_1(){ //Conversiones equivalentes
         control.valorMoneda(modelo);
