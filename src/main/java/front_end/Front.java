@@ -48,6 +48,9 @@ public class Front extends JFrame {
     public Image getIconImage(){
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
     }
+    control control = new control();
+    Model modelo = new Model();
+    Conversiones con= new Conversiones();
     public void Diseno(){
         //etiqueta de la moneda a combertir
         m_moneda = new JLabel("1 Dólar estadounidense Es igual a:");
@@ -87,7 +90,6 @@ public class Front extends JFrame {
         bandera_1.setForeground(new Color(253,253,150));
         bandera_1.setBackground(new Color(10,10,10));
         panel.add(bandera_1);
-
         //precio equivalente
         cambio_2 = new JTextField(" 4000.06");
         cambio_2.setBounds(10, 220,100,50);
@@ -102,7 +104,7 @@ public class Front extends JFrame {
         bandera_2.setForeground(new Color(253,253,150));
         bandera_2.setBackground(new Color(10,10,10));
         panel.add(bandera_2);
-
+        //grafico
         mapaIma= new JLabel();
         mapaIma.setBounds(320,30,366,242);
         mapaIma.setOpaque(true);
@@ -122,7 +124,6 @@ public class Front extends JFrame {
 
         imaCombo(bandera_1);
         imaCombo2();
-
     }
      //insertar imagen y texto al combobox
     private void imaCombo(JComboBox bandera_1) {
@@ -185,21 +186,19 @@ public class Front extends JFrame {
         ActionListener acciona= e -> {
             System.out.println("si funciona "+ bandera_1.getSelectedItem() +" y " +bandera_2.getSelectedItem());
             if (e.getSource()==convertir) {
-                dolarApeso();
+
+                    tasaCambio_1();
+
+                    //tasaCmbio_2();
+
             }
         };
-
         convertir.addActionListener(acciona);
     }
-
-    public void dolarApeso(){ //Conversiones equivalentes
-
-        control control = new control();
-        Model modelo = new Model();
+    public void tasaCambio_1(){ //Conversiones equivalentes
         control.valorMoneda(modelo);
-        Conversiones con= new Conversiones();
         //Equivalencia a peso colombino
-       /* switch (String.valueOf(bandera_1.getSelectedItem())) {
+        switch (String.valueOf(bandera_1.getSelectedItem())) {
             case "Dólar estadounidense" -> {
                 cambio_2.setText(String.valueOf(con.dolarPeso(Double.valueOf(modelo.getDolar()),Double.valueOf(cambio_1.getText()))));
                 m_moneda.setText("1 Dólar estadounidense Es igual a:");
@@ -242,51 +241,54 @@ public class Front extends JFrame {
                 pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapWon.png"));
             }
-        }*/
+        }
+    }
+    //equivalencia a moneda extranjera
+    private void tasaCmbio_2(){
         DecimalFormat df= new DecimalFormat("#0.000000");
-          //equivalencia a moneda extranjera
+        control.valorMoneda(modelo);
         switch (String.valueOf(bandera_2.getSelectedItem())) {
 
-            case "Peso colombiano" -> {
-                cambio_1.setText(String.valueOf(df.format(Double.valueOf(cambio_2.getText())/modelo.getDolar())));
+            case "Dólar estadounidense" -> {
+                cambio_2.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getDolar())));
                 m_moneda.setText("1 Peso colombiano Es igual a:");
-                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_2.getText())/modelo.getDolar())) + " Dolar");
-                pais.setText((String.valueOf(bandera_1.getSelectedItem())=="Dólar estadounidense") ? "estadounidense" : "N/A");
+                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getDolar())) + " Dólar");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem())=="Dólar estadounidense") ? "estadounidense" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapaPesoDolar.png"));
             }
-            case "Peso colombian" -> {
-                cambio_1.setText(String.valueOf(con.pesoDolar(Double.valueOf(cambio_2.getText()), Double.valueOf(modelo.getPeso()))));
+            case "Peso colombiano" -> {
+                cambio_2.setText("1.0");
                 m_moneda.setText("1 Peso Colombiano Es igual a:");
                 precio_principal.setText(String.valueOf(modelo.getPeso()) + " Pesos");
                 pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Peso colombiano") ? "Colombiano" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/grafico.jpg"));
             }
             case "Euro" ->{
-                cambio_1.setText(String.valueOf(con.pesoEuro(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getEuro()))));
+                cambio_2.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getEuro())));
                 m_moneda.setText("1 Peso colombiano Es igual a:");
-                precio_principal.setText(String.valueOf(con.pesoEuro(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getEuro()))));
-                pais.setText((String.valueOf(bandera_1.getSelectedItem()) == "Euro") ? "Euro" : "N/A");
+                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getEuro())));
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Euro") ? "Euro" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapPesoEuro.png"));
             }
             case "Libra esterlina" -> {
-                cambio_1.setText(String.valueOf(con.pesoLibra(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getLibra()))));
+                cambio_2.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getLibra())));
                 m_moneda.setText("1 Peso colombiano Es igual a:");
-                precio_principal.setText(String.valueOf(con.pesoLibra(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getLibra()))) + "Libra");
-                pais.setText((String.valueOf(bandera_1.getSelectedItem()) == "Libra esterlina") ? "esterlina" : "N/A");
+                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getDolar())) + " Libra");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Libra esterlina") ? "esterlina" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapPesoLibra.png"));
             }
             case "Yen" ->{
-                cambio_1.setText(String.valueOf(con.pesoYen(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getYen()))));
+                cambio_2.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getYen())));
                 m_moneda.setText("1 Peso colombiano Es igual a:");
-                precio_principal.setText(String.valueOf(con.pesoYen(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getYen()))) + " Yen");
-                pais.setText((String.valueOf(bandera_1.getSelectedItem()) == "Yen") ? "japonés" : "N/A");
+                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getYen())) + " Yen");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Yen") ? "japonés" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapPesoYen.png"));
             }
             case "Won coreano" ->{
-                cambio_1.setText(String.valueOf(con.pesoWonCoreano(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getWon()))));
+                cambio_2.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getWon())));
                 m_moneda.setText("1 Peso colombiano Es igual a:");
-                precio_principal.setText(String.valueOf(con.pesoWonCoreano(Double.valueOf(cambio_2.getText()),Double.valueOf(modelo.getWon()))) + " Won");
-                pais.setText((String.valueOf(bandera_1.getSelectedItem()) == "Won coreano") ? "surcoreano" : "N/A");
+                precio_principal.setText(String.valueOf(df.format(Double.valueOf(cambio_1.getText())/modelo.getWon())) + " Won");
+                pais.setText((String.valueOf(bandera_2.getSelectedItem()) == "Won coreano") ? "surcoreano" : "N/A");
                 mapaIma.setIcon(getIcono("/imagenes/mapPesoWon.png"));
             }
         }
