@@ -6,7 +6,10 @@ package front_end;
  */
 import  controller.Conversiones;
 import controller.control;
+import ejecutor.Controlador;
 import model.Model;
+import pantallaInicio.Front1.PantallaInicio;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,6 +18,7 @@ import java.util.Hashtable;
 import java.util.Objects;
 public class Front extends JFrame {
     private JPanel panel;
+    private Controlador controlador;
     private JcomBoxRender mrender;
     private JLabel precio_principal,pais,m_moneda, mapaIma;
     private JTextField cambio_1, cambio_2;
@@ -131,6 +135,26 @@ public class Front extends JFrame {
         convertirP.setIcon(getIconoBotones2("/imagenes/boton2.png"));
         convertirP.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
         panel.add(convertirP);
+        //Boton retroceder
+        retroceder = new JButton();
+        retroceder.setBounds(130, 270, 50,70);
+        retroceder.setOpaque(true);
+        retroceder.setBorder(null);
+        retroceder.setContentAreaFilled(false);
+        retroceder.setBackground(new Color(10,10,10));
+        retroceder.setIcon(getIconoBotones2("/imagenes/retrocede.png"));
+        retroceder.setRolloverIcon(getIconoBotonesP2("/imagenes/retrocede.png"));
+        panel.add(retroceder);
+        //Boton salir
+        salir = new JButton();
+        salir.setBounds(200, 270, 50,70);
+        salir.setOpaque(true);
+        salir.setBorder(null);
+        salir.setContentAreaFilled(false);
+        salir.setBackground(new Color(10,10,10));
+        salir.setIcon(getIconoBotones2("/imagenes/salir.png"));
+        salir.setRolloverIcon(getIconoBotonesP2("/imagenes/salir.png"));
+        panel.add(salir);
 
         imaCombo(bandera_1);
         imaCombo2();
@@ -201,7 +225,7 @@ public class Front extends JFrame {
     }
     private void accionar() {
 
-        ActionListener acciona= e -> {
+        ActionListener acciona= e -> { //Equivalencia peso a mooneda extranjera
             System.out.println("Boton 1");
             if (e.getSource()==convertir) {
                 tasaCambio_1();
@@ -209,13 +233,29 @@ public class Front extends JFrame {
         };
         convertir.addActionListener(acciona);
 
-        ActionListener accoina2= e -> {
-            System.out.println("Boton 2");
+        ActionListener accoina2= e -> { //Equivalencia moneda extranjera a peso colombiano
             if(e.getSource() == convertirP){
                 tasaCmbio_2();
             }
         };
         convertirP.addActionListener(accoina2);
+
+        ActionListener accionaRetrocede= e-> {
+            if(e.getSource()== retroceder){
+                JOptionPane.showConfirmDialog(null,"retrocede");
+                PantallaInicio pantallaInicio= new PantallaInicio();
+                pantallaInicio.setVisible(true);
+            }
+        };
+        retroceder.addActionListener(accionaRetrocede);
+
+        ActionListener accionaSalir= e ->{//Sale del programa
+            if(e.getSource()== salir) {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres salir del programa?");
+                if (opcion == 0) {
+                System.exit(0);
+            }}};
+        salir.addActionListener(accionaSalir);
     }
     public void tasaCambio_1(){ //Conversiones equivalentes
         control.valorMoneda(modelo);
@@ -314,5 +354,8 @@ public class Front extends JFrame {
                 mapaIma.setIcon(getIcono("/imagenes/mapPesoWon.png"));
             }
         }
+    }
+    public void setControlador(Controlador controlador){
+        this.controlador=controlador;
     }
 }
