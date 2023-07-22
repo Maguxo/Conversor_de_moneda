@@ -233,18 +233,18 @@ public class Front extends JFrame {
         };
         convertir.addActionListener(acciona);
 
-        ActionListener accoina2= e -> { //Equivalencia moneda extranjera a peso colombiano
+        ActionListener accoina2= e -> { //Equivalencia moneda extranjera a peso colombiano.
             if(e.getSource() == convertirP){
                 tasaCmbio_2();
             }
         };
         convertirP.addActionListener(accoina2);
 
-        ActionListener accionaRetrocede= e-> {
+        ActionListener accionaRetrocede= e-> {//Me dirige a la ventana menú.
             if(e.getSource()== retroceder){
-                JOptionPane.showConfirmDialog(null,"retrocede");
-                PantallaInicio pantallaInicio= new PantallaInicio();
-                pantallaInicio.setVisible(true);
+                JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+                controlador.noMostrarFront();
+                controlador.mostrarPantallaInicio();
             }
         };
         retroceder.addActionListener(accionaRetrocede);
@@ -355,6 +355,7 @@ public class Front extends JFrame {
             }
         }
     }
+    //Hace control
     public void setControlador(Controlador controlador){
         this.controlador=controlador;
     }

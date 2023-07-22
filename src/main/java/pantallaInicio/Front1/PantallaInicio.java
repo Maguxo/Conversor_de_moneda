@@ -38,12 +38,26 @@ public class PantallaInicio extends JFrame {
      //Opciones del menu principal.
     private void AccionarB() {
 
-        ActionListener accionaConver= e->{
+        ActionListener accionaConver= e->{//Me dirige a la ventana conversor
           if(e.getSource()== bConversor){
+              controlador.noMostrarPantallaInicio();
              controlador.mostrarFront();
-          }
-        };
+          }};
         bConversor.addActionListener(accionaConver);
+
+        ActionListener accTemperatura= e ->{// Se dirige a la ventana conversor temperatira.
+          if(e.getSource()== bConversorTemperatura){
+              controlador.noMostrarPantallaInicio();
+              controlador.mostrarTemperatura();
+          }};
+        bConversorTemperatura.addActionListener(accTemperatura);
+
+        ActionListener accDistancia= e ->{//Se dirige a la ventana Conversor de Distancia.
+          if(e.getSource()==bDistancia){
+              controlador.noMostrarPantallaInicio();
+              controlador.mostrarDistancia();
+          }};
+        bDistancia.addActionListener(accDistancia);
     }
     //Diseño del menú
     public void Diseño(){
@@ -107,7 +121,7 @@ public class PantallaInicio extends JFrame {
     public Image getIconImage(){
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
     }
-
+    //Hace control
     public void setControlador(Controlador controlador){
         this.controlador=controlador;
     }
