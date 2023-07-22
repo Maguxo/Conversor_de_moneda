@@ -1,5 +1,9 @@
 package distancia.ventana;
-
+/**
+ * Create by Edgar M Gómez P
+ * Back-end Developer Java
+ *
+ */
 import ejecutor.Controlador;
 
 import javax.swing.*;
