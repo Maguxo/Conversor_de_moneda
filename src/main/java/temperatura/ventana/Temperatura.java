@@ -8,6 +8,7 @@ import ejecutor.Controlador;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class Temperatura extends JFrame {
@@ -33,6 +34,7 @@ public class Temperatura extends JFrame {
         this.getContentPane().add(panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Diseño();
+        accionaBoton();
     }
     public void Diseño(){
         imageGif= new JLabel();
@@ -52,7 +54,7 @@ public class Temperatura extends JFrame {
         panel.add(tTemperatura);
 
         nTemperatura= new JLabel("21");
-        nTemperatura.setBounds(380,40,100,100);
+        nTemperatura.setBounds(380,50,100,100);
         nTemperatura.setOpaque(true);
         nTemperatura.setFont(new Font("Agency FB",Font.BOLD,60));
         nTemperatura.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -61,7 +63,7 @@ public class Temperatura extends JFrame {
         panel.add(nTemperatura);
 
         nTemperatura= new JLabel("°C");
-        nTemperatura.setBounds(482,40,100,100);
+        nTemperatura.setBounds(482,50,100,100);
         nTemperatura.setOpaque(true);
         nTemperatura.setFont(new Font("Agency FB",Font.BOLD,60));
         nTemperatura.setForeground(new Color(253,253,150));
@@ -69,34 +71,109 @@ public class Temperatura extends JFrame {
         panel.add(nTemperatura);
 
         cambio_1 = new JTextField(" 1");
-        cambio_1.setBounds(340, 140,100,50);
+        cambio_1.setBounds(340, 150,100,50);
         cambio_1.setFont(new Font("Agency FB",Font.BOLD,16));
         cambio_1.setForeground(new Color(253,253,150));
         cambio_1.setBackground(new Color(10,10,10));
         panel.add(cambio_1);
 
         temperatura_1= new JComboBox<String>();
-        temperatura_1.setBounds(440,140,200,50);
+        temperatura_1.setBounds(440,150,200,50);
         temperatura_1.setFont(new Font("Agency FB",Font.BOLD,16));
         temperatura_1.setForeground(new Color(253,253,150));
         temperatura_1.setBackground(new Color(10,10,10));
         panel.add(temperatura_1);
 
         cambio_2 = new JTextField(" 1");
-        cambio_2.setBounds(340, 200,100,50);
+        cambio_2.setBounds(340, 210,100,50);
         cambio_2.setFont(new Font("Agency FB",Font.BOLD,16));
         cambio_2.setForeground(new Color(253,253,150));
         cambio_2.setBackground(new Color(10,10,10));
         panel.add(cambio_2);
 
         temperatura_2= new JComboBox<String>();
-        temperatura_2.setBounds(440,200,200,50);
+        temperatura_2.setBounds(440,210,200,50);
         temperatura_2.setFont(new Font("Agency FB",Font.BOLD,16));
         temperatura_2.setForeground(new Color(253,253,150));
         temperatura_2.setBackground(new Color(10,10,10));
         panel.add(temperatura_2);
 
+        convertir = new JButton();
+        convertir.setBounds(10, 280, 50,70);
+        convertir.setOpaque(true);
+        convertir.setBorder(null);
+        convertir.setContentAreaFilled(false);
+        convertir.setBackground(new Color(10,10,10));
+        convertir.setIcon(getIconoBotones("/imagenes/boton.png"));
+        convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
+        panel.add(convertir);
 
+        convertirP = new JButton();
+        convertirP.setBounds(70, 280, 50,70);
+        convertirP.setOpaque(true);
+        convertirP.setBorder(null);
+        convertirP.setContentAreaFilled(false);
+        convertirP.setBackground(new Color(10,10,10));
+        convertirP.setIcon(getIconoBotones2("/imagenes/boton2.png"));
+        convertirP.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
+        panel.add(convertirP);
+
+        retroceder = new JButton();
+        retroceder.setBounds(130, 280, 50,70);
+        retroceder.setOpaque(true);
+        retroceder.setBorder(null);
+        retroceder.setContentAreaFilled(false);
+        retroceder.setBackground(new Color(10,10,10));
+        retroceder.setIcon(getIconoBotones2("/imagenes/retrocede.png"));
+        retroceder.setRolloverIcon(getIconoBotonesP2("/imagenes/retrocede.png"));
+        panel.add(retroceder);
+
+        salir = new JButton();
+        salir.setBounds(200, 280, 50,70);
+        salir.setOpaque(true);
+        salir.setBorder(null);
+        salir.setContentAreaFilled(false);
+        salir.setBackground(new Color(10,10,10));
+        salir.setIcon(getIconoBotones2("/imagenes/salir.png"));
+        salir.setRolloverIcon(getIconoBotonesP2("/imagenes/salir.png"));
+        panel.add(salir);
+
+    }
+    public void accionaBoton(){
+
+        ActionListener accionaRetrocede= e-> {//Me dirige a la ventana menú.
+            if(e.getSource()== retroceder){
+                JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+                controlador.noMostrarTemperatura();
+                controlador.mostrarPantallaInicio();
+            }
+        };
+        retroceder.addActionListener(accionaRetrocede);
+
+        ActionListener accionaSalir= e ->{//Sale del programa
+            if(e.getSource()== salir) {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres salir del programa?");
+                if (opcion == 0) {
+                    System.exit(0);
+                }}};
+        salir.addActionListener(accionaSalir);
+    }
+
+    public  ImageIcon getIconoBotones2(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(100,100,Image.SCALE_SMOOTH));
+    }
+    public  ImageIcon getIconoBotonesP2(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(106,106,Image.SCALE_SMOOTH));
+    }
+    public  ImageIcon getIconoBotones(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(150,150,Image.SCALE_SMOOTH));
+    }
+    public  ImageIcon getIconoBotonesP(String imaB){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
+                .getScaledInstance(160,160,Image.SCALE_SMOOTH));
     }
 
     public ImageIcon frio(String imagen){

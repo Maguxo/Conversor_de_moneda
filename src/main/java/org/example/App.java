@@ -39,9 +39,5 @@ public class App {
 
         //Hace visible las ventanas.
         controlador.mostrarPantallaInicio();
-
-
-
-
     }
 }

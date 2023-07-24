@@ -28,7 +28,9 @@ public class Distancia extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Diseño();
     }
-    public void Diseño(){}
+    public void Diseño(){
+
+    }
     //Logo ptincipal
     public Image getIconImage(){
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
