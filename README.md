@@ -39,9 +39,8 @@
 
 ---
 
- <div>
    <h1>Conversor de temperatura</h1>
-    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/7de5ec5a-38c4-441c-a6bf-85662b83c379">
+    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/78a7f85f-34ec-4585-ae5d-727198a870da">
    <p>Al opimir el logo de conversión de temperatura se abrira la ventana que mostrará este diseño.</p>
   </div>
 </div>
