@@ -33,14 +33,13 @@ public class Temperatura extends JFrame {
         panel.setBackground(new Color(10,10,10));
         this.getContentPane().add(panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Diseño();
+        Diseno();
         accionaBoton();
     }
-    public void Diseño(){
+    public void Diseno(){
         imageGif= new JLabel();
         imageGif.setBounds(10,20,250,250);
         imageGif.setOpaque(true);
-        imageGif.setBackground(Color.pink);
         imageGif.setIcon(frio("/imagenes/inicio.gif"));
         panel.add(imageGif);
 
@@ -158,30 +157,28 @@ public class Temperatura extends JFrame {
                 }}};
         salir.addActionListener(accionaSalir);
     }
-
-    public  ImageIcon getIconoBotones2(String imaB){
+    private   ImageIcon getIconoBotones2(String imaB){ //Ajusta imagenes.
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(100,100,Image.SCALE_SMOOTH));
     }
-    public  ImageIcon getIconoBotonesP2(String imaB){
+    private  ImageIcon getIconoBotonesP2(String imaB){
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(106,106,Image.SCALE_SMOOTH));
     }
-    public  ImageIcon getIconoBotones(String imaB){
+    private  ImageIcon getIconoBotones(String imaB){
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(150,150,Image.SCALE_SMOOTH));
     }
-    public  ImageIcon getIconoBotonesP(String imaB){
+    private  ImageIcon getIconoBotonesP(String imaB){
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(160,160,Image.SCALE_SMOOTH));
     }
-
-    public ImageIcon frio(String imagen){
+    private ImageIcon frio(String imagen){
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imagen))).getImage()
                 .getScaledInstance(250,250,Image.SCALE_FAST));
     }
     //Logo principal.
-    public Image getIconImage(){
+    public Image getIconImage(){ //logo principal.
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
     }
     public void setControlador(Controlador controlador){
