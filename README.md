@@ -50,7 +50,7 @@
 
 <div>
    <h1>Conversor de distancia</h1>
-    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/7de5ec5a-38c4-441c-a6bf-85662b83c379">
+    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/e8718b3c-173a-4889-9f82-e42996d3a8db">
    <p>Al opimir el logo de conversión de diseño se abrira la ventana que mostrará este diseño.</p>
   </div>
 </div>
