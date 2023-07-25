@@ -5,21 +5,28 @@ package temperatura.ventana;
  *
  */
 import ejecutor.Controlador;
+import front_end.JcomBoxRender;
+import temperatura.ventana.controller.ConversionesTem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Hashtable;
 import java.util.Objects;
 
 public class Temperatura extends JFrame {
     private JPanel panel;
     private JLabel imageGif,nTemperatura,sTemperatura, tTemperatura;
     private JTextField cambio_1, cambio_2;
-    private JComboBox temperatura_1,temperatura_2;
+    private JComboBox temperatura1,temperatura2;
     private JButton convertir,convertirP,salir,retroceder;
-
+    private JcomBoxRender mrender;
+    private Hashtable<Object,ImageIcon> Elementor_1,Elementor2;
     public Controlador controlador;
+    private ConversionesTem conTen= new ConversionesTem();
     public Temperatura(){
+        Elementor_1= new Hashtable<>();
+        Elementor2= new Hashtable<>();
         this.setLayout(null);
         this.setIconImage(getIconImage());
         this.setUndecorated(true);
@@ -76,12 +83,12 @@ public class Temperatura extends JFrame {
         cambio_1.setBackground(new Color(10,10,10));
         panel.add(cambio_1);
 
-        temperatura_1= new JComboBox<String>();
-        temperatura_1.setBounds(440,150,200,50);
-        temperatura_1.setFont(new Font("Agency FB",Font.BOLD,16));
-        temperatura_1.setForeground(new Color(253,253,150));
-        temperatura_1.setBackground(new Color(10,10,10));
-        panel.add(temperatura_1);
+        temperatura1= new JComboBox<String>();
+        temperatura1.setBounds(440,150,200,50);
+        temperatura1.setFont(new Font("Agency FB",Font.BOLD,16));
+        temperatura1.setForeground(new Color(234, 212, 28));
+        temperatura1.setBackground(new Color(255, 255, 255));
+        panel.add(temperatura1);
 
         cambio_2 = new JTextField(" 1");
         cambio_2.setBounds(340, 210,100,50);
@@ -90,12 +97,12 @@ public class Temperatura extends JFrame {
         cambio_2.setBackground(new Color(10,10,10));
         panel.add(cambio_2);
 
-        temperatura_2= new JComboBox<String>();
-        temperatura_2.setBounds(440,210,200,50);
-        temperatura_2.setFont(new Font("Agency FB",Font.BOLD,16));
-        temperatura_2.setForeground(new Color(253,253,150));
-        temperatura_2.setBackground(new Color(10,10,10));
-        panel.add(temperatura_2);
+        temperatura2= new JComboBox<String>();
+        temperatura2.setBounds(440,210,200,50);
+        temperatura2.setFont(new Font("Agency FB",Font.BOLD,16));
+        temperatura2.setForeground(new Color(234, 212, 28));
+        temperatura2.setBackground(new Color(255, 255, 255));
+        panel.add(temperatura2);
 
         convertir = new JButton();
         convertir.setBounds(10, 280, 50,70);
@@ -136,15 +143,62 @@ public class Temperatura extends JFrame {
         salir.setIcon(getIconoBotones2("/imagenes/salir.png"));
         salir.setRolloverIcon(getIconoBotonesP2("/imagenes/salir.png"));
         panel.add(salir);
-
+        imaCombotem();
+        imaCombotem2();
     }
+    private void imaCombotem2() {
+
+        temperatura2.addItem("Kelvin");
+        temperatura2.addItem("Celsius");
+        temperatura2.addItem("Fahrenheit");
+        temperatura2.addItem("Rankine");
+        temperatura2.addItem("Réaumour");
+
+        Elementor2.put("Kelvin", getIcon("/imagenes/tKelvin.png"));
+        Elementor2.put("Celsius", getIcon("/imagenes/tCelsius.png"));
+        Elementor2.put("Fahrenheit", getIcon("/imagenes/tFahrenheit.png"));
+        Elementor2.put("Rankine", getIcon("/imagenes/tRankine.png"));
+        Elementor2.put("Réaumour", getIcon("/imagenes/tReaumour.png"));
+
+        mrender= new JcomBoxRender(Elementor2);
+        temperatura2.setRenderer(mrender);
+    }
+    private void imaCombotem() {
+        temperatura1.addItem("Celsius");
+        temperatura1.addItem("Kelvin");
+        temperatura1.addItem("Fahrenheit");
+        temperatura1.addItem("Rankine");
+        temperatura1.addItem("Réaumour");
+
+        Elementor_1.put("Celsius", getIcon("/imagenes/tCelsius.png"));
+        Elementor_1.put("Kelvin", getIcon("/imagenes/tKelvin.png"));
+        Elementor_1.put("Fahrenheit", getIcon("/imagenes/tFahrenheit.png"));
+        Elementor_1.put("Rankine", getIcon("/imagenes/tRankine.png"));
+        Elementor_1.put("Réaumour", getIcon("/imagenes/tReaumour.png"));
+
+        mrender= new JcomBoxRender(Elementor_1);
+        temperatura1.setRenderer(mrender);
+    }
+     private ImageIcon getIcon(String temperatura){
+        return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(temperatura))).getImage()
+                .getScaledInstance(50,50,Image.SCALE_SMOOTH));
+     }
+
     public void accionaBoton(){
 
+
+        ActionListener oprime= e-> {//Conversión
+            if(e.getSource()== convertir) {
+               conversionTem();
+            }
+        };
+        convertir.addActionListener(oprime);
+
         ActionListener accionaRetrocede= e-> {//Me dirige a la ventana menú.
-            if(e.getSource()== retroceder){
-                JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
-                controlador.noMostrarTemperatura();
-                controlador.mostrarPantallaInicio();
+            int valide = JOptionPane.showConfirmDialog(null, "¿Quiere retroceder?");
+            if(e.getSource()== retroceder && valide == 0) {
+                    controlador.noMostrarTemperatura();
+                    controlador.mostrarPantallaInicio();
             }
         };
         retroceder.addActionListener(accionaRetrocede);
@@ -157,6 +211,9 @@ public class Temperatura extends JFrame {
                 }}};
         salir.addActionListener(accionaSalir);
     }
+     private  void conversionTem(){
+
+     }
     private   ImageIcon getIconoBotones2(String imaB){ //Ajusta imagenes.
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(100,100,Image.SCALE_SMOOTH));

@@ -139,8 +139,9 @@ public class Distancia extends JFrame {
     public void accionaBotonDistancia(){
 
         ActionListener accionaRetrocede= e-> {//Me dirige a la ventana menú.
-            if(e.getSource()== retroceder){
-                JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+           int valide3= JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+            if(e.getSource()== retroceder && valide3 == 0){
+
                 controlador.noMostrarDistancia();
                 controlador.mostrarPantallaInicio();
             }

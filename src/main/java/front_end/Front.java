@@ -52,9 +52,9 @@ public class Front extends JFrame {
     public Image getIconImage(){
         return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/moneda.png")).getScaledInstance(100,100,20);
     }
-    control control = new control();
-    Model modelo = new Model();
-    Conversiones con= new Conversiones();
+    private control control = new control();
+    private Model modelo = new Model();
+    private Conversiones con= new Conversiones();
     public void Diseno(){
         //etiqueta de la moneda a combertir
         m_moneda = new JLabel("1 Dólar estadounidense Es igual a:");
@@ -241,8 +241,8 @@ public class Front extends JFrame {
         convertirP.addActionListener(accoina2);
 
         ActionListener accionaRetrocede= e-> {//Me dirige a la ventana menú.
-            if(e.getSource()== retroceder){
-                JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+           int valide1= JOptionPane.showConfirmDialog(null,"¿Quiere retroceder?");
+            if(e.getSource()== retroceder && valide1 == 0){
                 controlador.noMostrarFront();
                 controlador.mostrarPantallaInicio();
             }
