@@ -45,4 +45,13 @@
    <p>Al opimir el logo de conversión de temperatura se abrira la ventana que mostrará este diseño.</p>
   </div>
 </div>
+
+---
+
+<div>
+   <h1>Conversor de distancia</h1>
+    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/7de5ec5a-38c4-441c-a6bf-85662b83c379">
+   <p>Al opimir el logo de conversión de diseño se abrira la ventana que mostrará este diseño.</p>
+  </div>
+</div>
 </html>
