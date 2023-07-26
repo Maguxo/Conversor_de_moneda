@@ -20,7 +20,7 @@ public class Temperatura extends JFrame {
     private JLabel imageGif,nTemperatura,sTemperatura, tTemperatura;
     private JTextField cambio_1, cambio_2;
     private JComboBox temperatura1,temperatura2;
-    private JButton convertir,convertirT,salir,retroceder;
+    private JButton convertir,salir,retroceder;
     private JcomBoxRender mrender;
     private final Hashtable<Object,ImageIcon> Elementor_1,Elementor2;
     public Controlador controlador;
@@ -115,18 +115,8 @@ public class Temperatura extends JFrame {
         convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
         panel.add(convertir);
 
-        convertirT = new JButton();
-        convertirT.setBounds(70, 280, 50,70);
-        convertirT.setOpaque(true);
-        convertirT.setBorder(null);
-        convertirT.setContentAreaFilled(false);
-        convertirT.setBackground(new Color(10,10,10));
-        convertirT.setIcon(getIconoBotones2("/imagenes/boton2.png"));
-        convertirT.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
-        panel.add(convertirT);
-
         retroceder = new JButton();
-        retroceder.setBounds(130, 280, 50,70);
+        retroceder.setBounds(100, 280, 50,70);
         retroceder.setOpaque(true);
         retroceder.setBorder(null);
         retroceder.setContentAreaFilled(false);
@@ -206,7 +196,7 @@ public class Temperatura extends JFrame {
                 }}};
         salir.addActionListener(accionaSalir);
     }
-     private  void conversionTem(){
+     private  void conversionTem(){// Conversiones equivalentes de temperaturas.
 
          DecimalFormat df= new DecimalFormat("#0.00");
       switch(String.valueOf(temperatura1.getSelectedItem())){
@@ -231,7 +221,19 @@ public class Temperatura extends JFrame {
                            "1 grado Kelvin es igual a: " : "N/A");
                    nTemperatura.setText(df.format(conTen.kelvinR(Double.valueOf(cambio_1.getText()))));
                    sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
-                           "°R" : "N/A");}}
+                           "°R" : "N/A");}
+                   if(Double.valueOf(cambio_1.getText()) >= 373.15){
+                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 372.15 && Double.valueOf(cambio_1.getText()) >= 304.15) {
+                      imageGif.setIcon(frio("/imagenes/calor.gif"));
+                  } else if (Double.valueOf(cambio_1.getText()) <= 303.15 && Double.valueOf(cambio_1.getText()) >= 293.15) {
+                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 292.15 && Double.valueOf(cambio_1.getText()) >= 283.15) {
+                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 282.15 && Double.valueOf(cambio_1.getText()) >= 279.15) {
+                      imageGif.setIcon(frio("/imagenes/frio2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 278.15 && Double.valueOf(cambio_1.getText()) >= 273.15) {
+                      imageGif.setIcon(frio("/imagenes/frio.gif"));}}
           case "Celsius" ->{
               if(temperatura2.getSelectedItem().equals("Kelvin")) {
                   cambio_2.setText(df.format(conTen.CelsiusKel(Double.valueOf(cambio_1.getText()))));
@@ -240,19 +242,6 @@ public class Temperatura extends JFrame {
                   nTemperatura.setText(df.format(conTen.CelsiusKel(Double.valueOf(cambio_1.getText()))));
                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Kelvin" ?
                           "°K" : "N/A");
-                  if(Double.valueOf(cambio_1.getText()) >= 100){
-                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
-                  }else if (Double.valueOf(cambio_1.getText()) <= 99 && Double.valueOf(cambio_1.getText()) >= 31) {
-                      imageGif.setIcon(frio("/imagenes/calor.gif"));
-                  } else if (Double.valueOf(cambio_1.getText()) <= 30 && Double.valueOf(cambio_1.getText()) >= 20) {
-                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
-                  }else if (Double.valueOf(cambio_1.getText()) <= 19 && Double.valueOf(cambio_1.getText()) >= 10) {
-                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
-                  }else if (Double.valueOf(cambio_1.getText()) <= 9 && Double.valueOf(cambio_1.getText()) >= 6) {
-                      imageGif.setIcon(frio("/imagenes/frio2.gif"));
-                  }else if (Double.valueOf(cambio_1.getText()) <= 5 && Double.valueOf(cambio_1.getText()) >= 0) {
-                      imageGif.setIcon(frio("/imagenes/frio.gif"));
-                  }
               } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
                   cambio_2.setText(df.format(conTen.CelsiusFah(Double.valueOf(cambio_1.getText()))));
                   tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Celsius" ?
@@ -266,7 +255,19 @@ public class Temperatura extends JFrame {
                           "1 grado Celsius es igual a: " : "N/A");
                   nTemperatura.setText(df.format(conTen.CelsiusR(Double.valueOf(cambio_1.getText()))));
                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
-                          "°R" : "N/A");}}
+                          "°R" : "N/A");}
+                  if(Double.valueOf(cambio_1.getText()) >= 100){
+                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 99 && Double.valueOf(cambio_1.getText()) >= 31) {
+                      imageGif.setIcon(frio("/imagenes/calor.gif"));
+                  } else if (Double.valueOf(cambio_1.getText()) <= 30 && Double.valueOf(cambio_1.getText()) >= 20) {
+                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 19 && Double.valueOf(cambio_1.getText()) >= 10) {
+                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 9 && Double.valueOf(cambio_1.getText()) >= 6) {
+                      imageGif.setIcon(frio("/imagenes/frio.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 5 && Double.valueOf(cambio_1.getText()) >= 0) {
+                      imageGif.setIcon(frio("/imagenes/frio2.gif"));}}
           case "Fahrenheit" ->{
               if(temperatura2.getSelectedItem().equals("Kelvin")) {
                   cambio_2.setText(df.format(conTen.fahrenheitKel(Double.valueOf(cambio_1.getText()))));
@@ -288,7 +289,20 @@ public class Temperatura extends JFrame {
                           "1 grado Fahrenheit es igual a: " : "N/A");
                   nTemperatura.setText(df.format(conTen.fahrenheitR(Double.valueOf(cambio_1.getText()))));
                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
-                          "°R" : "N/A");}}
+                          "°R" : "N/A");}
+                  if(Double.valueOf(cambio_1.getText()) >= 212){
+                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 210.20 && Double.valueOf(cambio_1.getText()) >= 87.80) {
+                      imageGif.setIcon(frio("/imagenes/calor.gif"));
+                  } else if (Double.valueOf(cambio_1.getText()) <= 86 && Double.valueOf(cambio_1.getText()) >= 68) {
+                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 66.20 && Double.valueOf(cambio_1.getText()) >= 50) {
+                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 48.20 && Double.valueOf(cambio_1.getText()) >= 42.80) {
+                      imageGif.setIcon(frio("/imagenes/frio.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 41 && Double.valueOf(cambio_1.getText()) >= 32) {
+                      imageGif.setIcon(frio("/imagenes/frio2.gif"));
+                  }}
           case "Rankine" ->{
               if(temperatura2.getSelectedItem().equals("Kelvin")) {
                   cambio_2.setText(df.format(conTen.rankineKel(Double.valueOf(cambio_1.getText()))));
@@ -304,13 +318,25 @@ public class Temperatura extends JFrame {
                   nTemperatura.setText(df.format(conTen.rankineCel(Double.valueOf(cambio_1.getText()))));
                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Celsius" ?
                           "°C" : "N/A");
-              } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
-                  cambio_2.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
-                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Rankine" ?
-                          "1 grado Rankine es igual a: " : "N/A");
-                  nTemperatura.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
-                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Fahrenheit" ?
-                          "°F" : "N/A");}}}}
+                  } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
+                      cambio_2.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
+                      tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Rankine" ?
+                              "1 grado Rankine es igual a: " : "N/A");
+                      nTemperatura.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
+                      sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Fahrenheit" ?
+                              "°F" : "N/A");}
+                  if(Double.valueOf(cambio_1.getText()) >= 671.67){
+                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 669.87 && Double.valueOf(cambio_1.getText()) >= 547.47) {
+                      imageGif.setIcon(frio("/imagenes/calor.gif"));
+                  } else if (Double.valueOf(cambio_1.getText()) <= 545.67 && Double.valueOf(cambio_1.getText()) >= 527.67) {
+                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 525.87 && Double.valueOf(cambio_1.getText()) >= 509.67) {
+                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 507.87 && Double.valueOf(cambio_1.getText()) >= 502.87) {
+                      imageGif.setIcon(frio("/imagenes/frio.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 500.67 && Double.valueOf(cambio_1.getText()) >= 491.67) {
+                      imageGif.setIcon(frio("/imagenes/frio2.gif"));}}}}
     private   ImageIcon getIconoBotones2(String imaB){ //Ajusta imagenes.
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(100,100,Image.SCALE_SMOOTH));
