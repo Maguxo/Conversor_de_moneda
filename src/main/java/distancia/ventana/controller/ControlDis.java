@@ -44,5 +44,4 @@ public interface ControlDis {
     public Double kilometroMet(double hectometro);
     public Double kilometroDeca(double hectometro);
     public Double kilometroHecto(double hectometro);
-    public Double kilometroKilom(double hectometro);
 }
