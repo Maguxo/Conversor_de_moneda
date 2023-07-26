@@ -1,5 +1,5 @@
 package temperatura.ventana;
-/**
+/*
  * Create by Edgar M Gómez P
  * Back-end Developer Java
  *
@@ -11,19 +11,20 @@ import temperatura.ventana.controller.ConversionesTem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Hashtable;
 import java.util.Objects;
 
 public class Temperatura extends JFrame {
-    private JPanel panel;
+    private final JPanel panel;
     private JLabel imageGif,nTemperatura,sTemperatura, tTemperatura;
     private JTextField cambio_1, cambio_2;
     private JComboBox temperatura1,temperatura2;
-    private JButton convertir,convertirP,salir,retroceder;
+    private JButton convertir,convertirT,salir,retroceder;
     private JcomBoxRender mrender;
-    private Hashtable<Object,ImageIcon> Elementor_1,Elementor2;
+    private final Hashtable<Object,ImageIcon> Elementor_1,Elementor2;
     public Controlador controlador;
-    private ConversionesTem conTen= new ConversionesTem();
+    private final ConversionesTem conTen= new ConversionesTem();
     public Temperatura(){
         Elementor_1= new Hashtable<>();
         Elementor2= new Hashtable<>();
@@ -51,16 +52,16 @@ public class Temperatura extends JFrame {
         panel.add(imageGif);
 
         tTemperatura= new JLabel("1 grado Kelvin es igual a:");
-        tTemperatura.setBounds(260,20,250,50);
+        tTemperatura.setBounds(260,20,300,50);
         tTemperatura.setOpaque(true);
         tTemperatura.setFont(new Font("Agency FB",Font.BOLD,30));
-        tTemperatura.setHorizontalAlignment(SwingConstants.RIGHT);
+        tTemperatura.setHorizontalAlignment(SwingConstants.LEFT);
         tTemperatura.setForeground(new Color(253,253,150));
         tTemperatura.setBackground(new Color(10,10,10));
         panel.add(tTemperatura);
 
-        nTemperatura= new JLabel("21");
-        nTemperatura.setBounds(380,50,100,100);
+        nTemperatura= new JLabel("-272.15");
+        nTemperatura.setBounds(320,60,200,80);
         nTemperatura.setOpaque(true);
         nTemperatura.setFont(new Font("Agency FB",Font.BOLD,60));
         nTemperatura.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -68,13 +69,13 @@ public class Temperatura extends JFrame {
         nTemperatura.setBackground(new Color(10,10,10));
         panel.add(nTemperatura);
 
-        nTemperatura= new JLabel("°C");
-        nTemperatura.setBounds(482,50,100,100);
-        nTemperatura.setOpaque(true);
-        nTemperatura.setFont(new Font("Agency FB",Font.BOLD,60));
-        nTemperatura.setForeground(new Color(253,253,150));
-        nTemperatura.setBackground(new Color(10,10,10));
-        panel.add(nTemperatura);
+        sTemperatura= new JLabel("°C");
+        sTemperatura.setBounds(520,60,100,80);
+        sTemperatura.setOpaque(true);
+        sTemperatura.setFont(new Font("Agency FB",Font.BOLD,60));
+        sTemperatura.setForeground(new Color(253,253,150));
+        sTemperatura.setBackground(new Color(10,10,10));
+        panel.add(sTemperatura);
 
         cambio_1 = new JTextField(" 1");
         cambio_1.setBounds(340, 150,100,50);
@@ -114,15 +115,15 @@ public class Temperatura extends JFrame {
         convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
         panel.add(convertir);
 
-        convertirP = new JButton();
-        convertirP.setBounds(70, 280, 50,70);
-        convertirP.setOpaque(true);
-        convertirP.setBorder(null);
-        convertirP.setContentAreaFilled(false);
-        convertirP.setBackground(new Color(10,10,10));
-        convertirP.setIcon(getIconoBotones2("/imagenes/boton2.png"));
-        convertirP.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
-        panel.add(convertirP);
+        convertirT = new JButton();
+        convertirT.setBounds(70, 280, 50,70);
+        convertirT.setOpaque(true);
+        convertirT.setBorder(null);
+        convertirT.setContentAreaFilled(false);
+        convertirT.setBackground(new Color(10,10,10));
+        convertirT.setIcon(getIconoBotones2("/imagenes/boton2.png"));
+        convertirT.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
+        panel.add(convertirT);
 
         retroceder = new JButton();
         retroceder.setBounds(130, 280, 50,70);
@@ -152,13 +153,11 @@ public class Temperatura extends JFrame {
         temperatura2.addItem("Celsius");
         temperatura2.addItem("Fahrenheit");
         temperatura2.addItem("Rankine");
-        temperatura2.addItem("Réaumour");
 
         Elementor2.put("Kelvin", getIcon("/imagenes/tKelvin.png"));
         Elementor2.put("Celsius", getIcon("/imagenes/tCelsius.png"));
         Elementor2.put("Fahrenheit", getIcon("/imagenes/tFahrenheit.png"));
         Elementor2.put("Rankine", getIcon("/imagenes/tRankine.png"));
-        Elementor2.put("Réaumour", getIcon("/imagenes/tReaumour.png"));
 
         mrender= new JcomBoxRender(Elementor2);
         temperatura2.setRenderer(mrender);
@@ -168,13 +167,11 @@ public class Temperatura extends JFrame {
         temperatura1.addItem("Kelvin");
         temperatura1.addItem("Fahrenheit");
         temperatura1.addItem("Rankine");
-        temperatura1.addItem("Réaumour");
 
         Elementor_1.put("Celsius", getIcon("/imagenes/tCelsius.png"));
         Elementor_1.put("Kelvin", getIcon("/imagenes/tKelvin.png"));
         Elementor_1.put("Fahrenheit", getIcon("/imagenes/tFahrenheit.png"));
         Elementor_1.put("Rankine", getIcon("/imagenes/tRankine.png"));
-        Elementor_1.put("Réaumour", getIcon("/imagenes/tReaumour.png"));
 
         mrender= new JcomBoxRender(Elementor_1);
         temperatura1.setRenderer(mrender);
@@ -183,9 +180,7 @@ public class Temperatura extends JFrame {
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(temperatura))).getImage()
                 .getScaledInstance(50,50,Image.SCALE_SMOOTH));
      }
-
     public void accionaBoton(){
-
 
         ActionListener oprime= e-> {//Conversión
             if(e.getSource()== convertir) {
@@ -213,7 +208,109 @@ public class Temperatura extends JFrame {
     }
      private  void conversionTem(){
 
-     }
+         DecimalFormat df= new DecimalFormat("#0.00");
+      switch(String.valueOf(temperatura1.getSelectedItem())){
+          case "Kelvin" ->{
+               if(temperatura2.getSelectedItem().equals("Celsius")) {
+                   cambio_2.setText(df.format(conTen.kelvinCel(Double.valueOf(cambio_1.getText()))));
+                   tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Kelvin" ?
+                           "1 grado Kelvin es igual a: " : "N/A");
+                   nTemperatura.setText(df.format(conTen.kelvinCel(Double.valueOf(cambio_1.getText()))));
+                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Celsius" ?
+                           "°C" : "N/A");
+               } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
+                   cambio_2.setText(df.format(conTen.kelvinFah(Double.valueOf(cambio_1.getText()))));
+                   tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Kelvin" ?
+                           "1 grado Kelvin es igual a: " : "N/A");
+                   nTemperatura.setText(df.format(conTen.kelvinFah(Double.valueOf(cambio_1.getText()))));
+                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Fahrenheit" ?
+                           "°F" : "N/A");
+               } else if (temperatura2.getSelectedItem().equals("Rankine")) {
+                   cambio_2.setText(df.format(conTen.kelvinR(Double.valueOf(cambio_1.getText()))));
+                   tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Kelvin" ?
+                           "1 grado Kelvin es igual a: " : "N/A");
+                   nTemperatura.setText(df.format(conTen.kelvinR(Double.valueOf(cambio_1.getText()))));
+                   sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
+                           "°R" : "N/A");}}
+          case "Celsius" ->{
+              if(temperatura2.getSelectedItem().equals("Kelvin")) {
+                  cambio_2.setText(df.format(conTen.CelsiusKel(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Celsius" ?
+                          "1 grado Celsius es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.CelsiusKel(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Kelvin" ?
+                          "°K" : "N/A");
+                  if(Double.valueOf(cambio_1.getText()) >= 100){
+                      imageGif.setIcon(frio("/imagenes/Calor2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 99 && Double.valueOf(cambio_1.getText()) >= 31) {
+                      imageGif.setIcon(frio("/imagenes/calor.gif"));
+                  } else if (Double.valueOf(cambio_1.getText()) <= 30 && Double.valueOf(cambio_1.getText()) >= 20) {
+                      imageGif.setIcon(frio("/imagenes/fresco.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 19 && Double.valueOf(cambio_1.getText()) >= 10) {
+                      imageGif.setIcon(frio("/imagenes/fresco2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 9 && Double.valueOf(cambio_1.getText()) >= 6) {
+                      imageGif.setIcon(frio("/imagenes/frio2.gif"));
+                  }else if (Double.valueOf(cambio_1.getText()) <= 5 && Double.valueOf(cambio_1.getText()) >= 0) {
+                      imageGif.setIcon(frio("/imagenes/frio.gif"));
+                  }
+              } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
+                  cambio_2.setText(df.format(conTen.CelsiusFah(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Celsius" ?
+                          "1 grado Celsius es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.CelsiusFah(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Fahrenheit" ?
+                          "°F" : "N/A");
+              } else if (temperatura2.getSelectedItem().equals("Rankine")) {
+                  cambio_2.setText(df.format(conTen.CelsiusR(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Celsius" ?
+                          "1 grado Celsius es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.CelsiusR(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
+                          "°R" : "N/A");}}
+          case "Fahrenheit" ->{
+              if(temperatura2.getSelectedItem().equals("Kelvin")) {
+                  cambio_2.setText(df.format(conTen.fahrenheitKel(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Fahrenheit" ?
+                          "1 grado Fahrenheit es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.fahrenheitKel(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Kelvin" ?
+                          "°K" : "N/A");
+              } else if (temperatura2.getSelectedItem().equals("Celsius")) {
+                  cambio_2.setText(df.format(conTen.fahrenheitCel(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Fahrenheit" ?
+                          "1 grado Fahrenheit es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.fahrenheitCel(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Celsius" ?
+                          "°C" : "N/A");
+              } else if (temperatura2.getSelectedItem().equals("Rankine")) {
+                  cambio_2.setText(df.format(conTen.fahrenheitR(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Fahrenheit" ?
+                          "1 grado Fahrenheit es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.fahrenheitR(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Rankine" ?
+                          "°R" : "N/A");}}
+          case "Rankine" ->{
+              if(temperatura2.getSelectedItem().equals("Kelvin")) {
+                  cambio_2.setText(df.format(conTen.rankineKel(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Rankine" ?
+                          "1 grado Rankine es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.rankineKel(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Kelvin" ?
+                          "°K" : "N/A");
+              } else if (temperatura2.getSelectedItem().equals("Celsius")) {
+                  cambio_2.setText(df.format(conTen.rankineCel(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Rankine" ?
+                          "1 grado Rankine es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.rankineCel(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Celsius" ?
+                          "°C" : "N/A");
+              } else if (temperatura2.getSelectedItem().equals("Fahrenheit")) {
+                  cambio_2.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
+                  tTemperatura.setText(String.valueOf(temperatura1.getSelectedItem()) == "Rankine" ?
+                          "1 grado Rankine es igual a: " : "N/A");
+                  nTemperatura.setText(df.format(conTen.rankineFah(Double.valueOf(cambio_1.getText()))));
+                  sTemperatura.setText(String.valueOf(temperatura2.getSelectedItem()) == "Fahrenheit" ?
+                          "°F" : "N/A");}}}}
     private   ImageIcon getIconoBotones2(String imaB){ //Ajusta imagenes.
         return new ImageIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource(imaB))).getImage()
                 .getScaledInstance(100,100,Image.SCALE_SMOOTH));

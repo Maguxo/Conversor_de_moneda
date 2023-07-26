@@ -9,7 +9,6 @@ import ejecutor.Controlador;
 import front_end.Front;
 import pantallaInicio.Front1.PantallaInicio;
 import temperatura.ventana.Temperatura;
-
 public class App {
     public static void main( String[] args ) {
         System.out.println( "Hello World!" );
