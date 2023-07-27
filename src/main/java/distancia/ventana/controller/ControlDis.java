@@ -1,5 +1,9 @@
 package distancia.ventana.controller;
-
+/**
+ * Create by Edgar M Gómez P
+ * Back-end Developer Java
+ *
+ */
 public interface ControlDis {
 
     public Double metroMili(double metro);

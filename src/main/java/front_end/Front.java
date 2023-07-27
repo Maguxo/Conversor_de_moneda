@@ -46,7 +46,6 @@ public class Front extends JFrame {
 
         Diseno();
         accionar();
-
     }
     //Icono principal del Frame
     public Image getIconImage(){
