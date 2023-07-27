@@ -39,7 +39,7 @@
 
    <div>
    <h1>Conversión de moneda</h1>
-    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/10d1f248-3a51-4d20-833e-cba928907907">
+    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/cbcc7bb1-fb31-4e4d-ab9b-0ee93653258f">
   <p>Al opimir el logo de conversión de moneda se abrirá esta ventana de conversión.</p>
   </div>
 </div>
