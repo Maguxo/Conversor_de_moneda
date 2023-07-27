@@ -1,6 +1,6 @@
 <html>
   <div align="center">
- <h6>Se sigue trabajando en el proyecto🛠🛠🛠🛠🛠🛠</h6>   
+ <h6>Queda pendiente conectarse a una API donde muestre el cambio real de la moneda 🛠🛠🛠🛠🛠🛠</h6>   
  <h1>Challenge ONE | Java | Back End | Conversor moneda, temperatura y longitud</h1>
 </div>
 
