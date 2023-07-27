@@ -18,7 +18,7 @@ public class Distancia extends JFrame {
     private JLabel pGif,nDistancia,sDistancia, tDistancia;
     private JTextField cambio1, cambio2;
     private JComboBox Distancia1,Distancia2;
-    private JButton convertir,convertirP,salir,retroceder;
+    private JButton convertir,salir,retroceder;
     private Controlador controlador;
     private JcomBoxRender mrender;
     private Hashtable<Object,ImageIcon> Elementor_1,Elementor_2;
@@ -116,18 +116,8 @@ public class Distancia extends JFrame {
         convertir.setRolloverIcon(getIconoBotonesP("/imagenes/boton.png"));
         panel.add(convertir);
 
-        convertirP = new JButton();
-        convertirP.setBounds(70, 300, 50,70);
-        convertirP.setOpaque(true);
-        convertirP.setBorder(null);
-        convertirP.setContentAreaFilled(false);
-        convertirP.setBackground(new Color(10,10,10));
-        convertirP.setIcon(getIconoBotones2("/imagenes/boton2.png"));
-        convertirP.setRolloverIcon(getIconoBotonesP2("/imagenes/boton2.png"));
-        panel.add(convertirP);
-
         retroceder = new JButton(); //Botón retrocede al menú.
-        retroceder.setBounds(130, 300, 50,70);
+        retroceder.setBounds(100, 300, 50,70);
         retroceder.setOpaque(true);
         retroceder.setBorder(null);
         retroceder.setContentAreaFilled(false);
