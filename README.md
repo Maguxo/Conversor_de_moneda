@@ -63,7 +63,11 @@
 ---
 <div>
    <h1>Video muestra</h1>
-    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/b45c7b34-d624-4e75-90de-65a3b4ebf7a9">
+    
+
+https://github.com/Magucho/Conversor_de_moneda/assets/98346054/ffe54747-fc3b-4f08-9ed0-62ffa50edac9
+
+
    <p>Brevemente se muestra como funciona el proyecto.</p>
   </div>
 </div>
