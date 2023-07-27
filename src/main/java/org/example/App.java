@@ -2,7 +2,7 @@ package org.example;
 /**
  * Create by Edgar M Gómez P
  * Back-end Developer Java
- *
+ * Thanks
  */
 import distancia.ventana.Distancia;
 import ejecutor.Controlador;
