@@ -53,9 +53,16 @@
 </div>
 
 ---
-
 <div>
    <h1>Conversor de distancia</h1>
+    <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/b45c7b34-d624-4e75-90de-65a3b4ebf7a9">
+   <p>Al opimir el logo de conversión de diseño se abrira la ventana que mostrará este diseño.</p>
+  </div>
+</div>
+
+---
+<div>
+   <h1>Video muestra</h1>
     <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/b45c7b34-d624-4e75-90de-65a3b4ebf7a9">
    <p>Al opimir el logo de conversión de diseño se abrira la ventana que mostrará este diseño.</p>
   </div>
