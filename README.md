@@ -7,7 +7,7 @@
 <div>
  <h1>Descripción del proyecto</h1>
 <p>Un reto que consiste en el desarrollo de un conversor de moneda, temperatura y longitud como extra utilizando Java Swing como motor grafico.</p>
- <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/5253b241-28b7-4f7b-9983-dcc44e854ba2">
+ <img src="https://github.com/Magucho/Conversor_de_moneda/assets/98346054/5d64dd14-dc9a-4a9f-917c-9c700a6ffbb7">
  </div>
 
 
