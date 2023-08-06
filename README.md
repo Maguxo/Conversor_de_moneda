@@ -21,9 +21,7 @@
 <div>
   <h1>Librerias</h1>
   
-  <br>
-  * ...
-  <br>
+ 
   * Maven
 
   ---
